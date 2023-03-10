@@ -25,3 +25,8 @@ respecter ?
 ```
 Construire une image la plus allégée possible.
 ```
+
+### Exercice 2
+
+A l’aide de la commande docker build, créer l’image ma_super_app  
+`docker build -t ma_super_app .`
