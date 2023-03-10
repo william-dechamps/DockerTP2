@@ -30,3 +30,38 @@ Construire une image la plus allégée possible.
 
 A l’aide de la commande docker build, créer l’image ma_super_app  
 `docker build -t ma_super_app .`
+
+### Exercice 3
+
+Compléter le fichier docker-compose.yml afin d’éxécuter ma_super_app avec sa
+base de données.
+
+```
+version: "3.9"
+
+services:
+  node:
+    container_name: node
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      tags:
+        - my_super_app:1.0.0
+    depends_on:
+      - mysql
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USERNAME}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+```
